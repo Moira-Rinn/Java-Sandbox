@@ -11,7 +11,13 @@ public class ScratchPad{
 //        System.out.println(sumDigits(125));
 //        System.out.println(isPalindrome(-1221));
 //        System.out.println(sumFirstAndLastDigit(0));
-        System.out.println(getEvenDigitSum(0));
+//        System.out.println(getEvenDigitSum(0));
+//        System.out.println(hasSharedDigit(12,13));
+//        System.out.println(hasSameLastDigit(12,232,42));
+//        System.out.println(getGreatestCommonDivisor(12,24));
+//        printFactors(45);
+//        System.out.println(isPerfectNumber(9));
+        numberToWords(100);
     }
     public static double area(double radius){
         if(radius < 0){
@@ -203,5 +209,105 @@ public class ScratchPad{
         }while(number>0);
         return sum;
     }
+    public static boolean hasSharedDigit(int num1, int num2){
+        if((num1<10||num1>99)||(num2<10||num2>99)){
+            return false;
+        }
+        int temp=num2;
+        while(num1>0){
+            int r=num1%10;
+            while(num2>0){
+                if (r == num2 % 10) {
+                    return true;
+                }
+                num2/=10;
+            }
+            num2=temp;
+            num1/=10;
+        }
+        return false;
+    }
+    public static boolean hasSameLastDigit(int num1, int num2, int num3) {
+        if ((num1 < 10 || num1 > 1000) || (num2 < 10 || num2 > 1000) || (num3 < 10 || num3 > 1000)) {
+            return false;
+        }
+        if ((num1 % 10 == num2 % 10) || num1 % 10 == num3 % 10) {
+            return true;
+        } else if (num2 % 10 == num3 % 10) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static int getGreatestCommonDivisor(int first, int second){
+        if((first<10)||(second<10)){
+            return -1;
+        }
+        int range;
+        int divisor=0;
+        if(first>second){range = first;}
+        else{range = second;}
+        for(int i = 1;i<=range/2;i++){
+            if((first%i==0)&&(second%i==0)){
+                divisor = i;
+            }
+        }
+        return divisor;
+    }
+    public static void printFactors(int number){
+        if(number<1)System.out.println("Invalid Value");
+        for(int i=1;i<=number;i++){
+            if(number%i==0){
+                System.out.println(i);
+            }
+        }
+    }
+    public static boolean isPerfectNumber(int number){
+        if(number<1)return false;
+        int sum=0;
+        for(int i=1;i<number;i++){
+            if(number%i==0){
+                sum+=i;
+            }
+        }
+        if(sum==number){return true;}
+        else{return false;}
+    }
+    public static void numberToWords(int number){
+        if(number<0)System.out.println("Invalid Value");
+        String[] nums={"Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"};
+        int reversed=reverse(number);
+        int cnt=getDigitCount(number);
+//        while (number>0){
+//            reversed=(reversed*10)+(number%10);
+//            number/=10;
+//            cnt++;
+//        }
+        for(int i=0;i<cnt;i++){
+            if(reversed>0) {
+                System.out.println(nums[(reversed % 10)]);
+                reversed /= 10;
+            }else{System.out.println(nums[0]);}
+        }
+    }
+    public static int reverse(int number){
 
+        int temp=Math.abs(number);
+        int reversed=0;
+        while (temp>0){
+            reversed=(reversed*10)+(temp%10);
+            temp/=10;
+        }
+        if(number<0)reversed*=-1;
+        return reversed;
+    }
+    public static int getDigitCount(int number){
+        if(number<0)return -1;
+        int cnt=0;
+        do{
+            number/=10;
+            cnt++;
+        }while (number>0);
+        return cnt;
+    }
 }
