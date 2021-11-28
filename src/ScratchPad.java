@@ -9,7 +9,9 @@ public class ScratchPad{
 //        System.out.println(isOdd(3));
 //        System.out.println(sumOdd(1, 21));
 //        System.out.println(sumDigits(125));
-        System.out.println(isPalindrome(-1221));
+//        System.out.println(isPalindrome(-1221));
+//        System.out.println(sumFirstAndLastDigit(0));
+        System.out.println(getEvenDigitSum(0));
     }
     public static double area(double radius){
         if(radius < 0){
@@ -62,12 +64,6 @@ public class ScratchPad{
                 return false;
             }
         }
-    }
-    public static double area(double x, double y){
-        if((x < 0) || (y<0)){
-            return -1.0;
-        }
-        return x * y;
     }
     public static void printDayOfTheWeek(int day){
         switch (day){
@@ -180,5 +176,32 @@ public class ScratchPad{
         if(sum==Math.abs(number)){return true;}
         else{return false;}
     }
-    
+    public static int sumFirstAndLastDigit(int number){
+        if(number<0){
+            return -1;
+        }
+        int first=-1;
+        int last=0;
+        do{
+           if(first==-1) first=number%10;
+           last=number%10;
+           number/=10;
+        }while(number>0);
+        int sum=first+last;
+        return sum;
+    }
+    public static int getEvenDigitSum(int number){
+        if(number<0){
+            return -1;
+        };
+        int num=0;
+        int sum=0;
+        do{
+            num=number%10;
+            if(num%2==0) sum+=num;
+            number/=10;
+        }while(number>0);
+        return sum;
+    }
+
 }
