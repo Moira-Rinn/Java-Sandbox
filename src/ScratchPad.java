@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class ScratchPad{
     public static void main(String[] args){
 //        System.out.println(area(5));
@@ -19,7 +21,8 @@ public class ScratchPad{
 //        System.out.println(isPerfectNumber(9));
 //        numberToWords(100);
 //        System.out.println(getLargestPrime(7));
-        printSquareStar(8);
+//        printSquareStar(8);
+
     }
     public static double area(double radius){
         if(radius < 0){
@@ -370,5 +373,22 @@ public class ScratchPad{
                 stars = "";
             }
         }
+    }
+    public static void addUserInput(){
+        Scanner scanner = new Scanner(System.in);
+        int sum = 0;
+        for(int i=1;i<=10;i++) {
+            System.out.println("Enter ten numbers ("+i+"): ");
+            boolean hasNextInt = scanner.hasNextInt();
+            if (hasNextInt) {
+                sum += scanner.nextInt();
+            } else {
+                System.out.println("NaN.");
+                i--;
+            }
+            scanner.nextLine();
+        }
+        System.out.println(sum);
+        scanner.close();
     }
 }
