@@ -17,7 +17,9 @@ public class ScratchPad{
 //        System.out.println(getGreatestCommonDivisor(12,24));
 //        printFactors(45);
 //        System.out.println(isPerfectNumber(9));
-        numberToWords(100);
+//        numberToWords(100);
+//        System.out.println(getLargestPrime(7));
+        printSquareStar(8);
     }
     public static double area(double radius){
         if(radius < 0){
@@ -309,5 +311,64 @@ public class ScratchPad{
             cnt++;
         }while (number>0);
         return cnt;
+    }
+    public static boolean canPack(int bigCount, int smallCount, int goal){
+        if(bigCount<0||smallCount<0||goal<0)return false;
+        while(bigCount>0) {
+            if (goal >= 5) {
+                goal -= 5;
+                if(goal==0) return true;
+                bigCount--;
+            }else {
+                break;
+            }
+        }
+        if(smallCount>=goal){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public static int getLargestPrime(int number){
+        if(number<2)return -1;
+        boolean isPrime=true;
+        int primeFactor=0;
+        for(int i=1;i<=number;i++){
+//            System.out.println("I: "+i);
+            if(number%i==0){
+                for(int j=2;j<i;j++){
+//                    System.out.println("J: "+j);
+                    if(i%j==0) isPrime=false;
+                }
+                if(isPrime)primeFactor=i;
+            }
+        }
+        return primeFactor;
+    }
+
+    public static void printSquareStar(int number) {
+        if (number < 5) {
+            System.out.println("Invalid Value");
+        } else {
+            String stars = "";
+            for (int i = 1; i <= number; i++) {
+                for (int j = 1; j <= number; j++) {
+                    if (i == 1 || i == number) {
+                        stars += "*";
+                    } else if (j == 1 || j == number) {
+                        stars += "*";
+                    } else if (i == j) {
+                        stars += "*";
+                    } else if (j == (number - i + 1)) {
+                        stars += "*";
+                    } else {
+                        stars += " ";
+                    }
+
+                }
+                System.out.println(stars);
+                stars = "";
+            }
+        }
     }
 }
